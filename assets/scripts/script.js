@@ -36,8 +36,20 @@ const quizChoice3 = document.getElementById('choice3');
 const quizChoice4 = document.getElementById('choice4');
 const quizAnswer = document.getElementById('answer');
 
-quizQuestion.innerHTML = question1.question;
-quizChoice1.innerHTML = question1.choice1.answer1;
-quizChoice2.innerHTML = question1.choice2.answer2;
-quizChoice3.innerHTML = question1.choice3.answer3;
-quizChoice4.innerHTML = question1.choice4.answer4;
+// quizQuestion.innerHTML = questionsArray[0].question;
+// quizChoice1.innerHTML = question1.choice1.answer1;
+// quizChoice2.innerHTML = question1.choice2.answer2;
+// quizChoice3.innerHTML = question1.choice3.answer3;
+// quizChoice4.innerHTML = question1.choice4.answer4;
+
+const generateQuestion = () => {
+    let i = Math.floor(Math.random() * questionsArray.length);
+    quizQuestion.innerHTML = questionsArray[i].question;
+    quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
+    quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
+    quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
+    quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
+
+};
+
+generateQuestion();
