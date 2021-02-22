@@ -36,11 +36,7 @@ const quizChoice3 = document.getElementById('choice3');
 const quizChoice4 = document.getElementById('choice4');
 const quizAnswer = document.getElementById('answer');
 
-// quizQuestion.innerHTML = questionsArray[0].question;
-// quizChoice1.innerHTML = question1.choice1.answer1;
-// quizChoice2.innerHTML = question1.choice2.answer2;
-// quizChoice3.innerHTML = question1.choice3.answer3;
-// quizChoice4.innerHTML = question1.choice4.answer4;
+const choiceButtons = document.querySelector('ul');
 
 const generateQuestion = () => {
     let i = Math.floor(Math.random() * questionsArray.length);
@@ -49,7 +45,10 @@ const generateQuestion = () => {
     quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
     quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
     quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
+    questionsArray.splice(i, 1);
 
 };
+
+choiceButtons.addEventListener('click', generateQuestion);
 
 generateQuestion();
