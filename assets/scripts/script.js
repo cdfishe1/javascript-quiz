@@ -1,3 +1,28 @@
+//Variables
+const mainHead = document.querySelector('h1');
+const quizChoice1 = document.getElementById('choice1');
+const quizChoice2 = document.getElementById('choice2');
+const quizChoice3 = document.getElementById('choice3');
+const quizChoice4 = document.getElementById('choice4');
+const quizAnswer = document.getElementById('answer');
+const choiceButtons = document.querySelector('ul');
+const explain = document.getElementById('gameExplanation');
+const startGameButton = document.getElementById('startGame');
+
+//Introduction to the game with button to begin
+mainHead.innerHTML = 'Coding Quiz Challenge';
+explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
+startGameButton.innerHTML = 'Start Game';
+
+//Start the Game
+const startGame = () => {
+    choiceButtons.style.display = 'initial';
+    startGameButton.style.display = 'none';
+    generateQuestions();
+};
+
+startGameButton.addEventListener('click', startGame);
+
 
 
 const question1 = {
@@ -29,18 +54,9 @@ const question3 = {
 
 const questionsArray = [question1, question2, question3];
 
-const quizQuestion = document.getElementById('question');
-const quizChoice1 = document.getElementById('choice1');
-const quizChoice2 = document.getElementById('choice2');
-const quizChoice3 = document.getElementById('choice3');
-const quizChoice4 = document.getElementById('choice4');
-const quizAnswer = document.getElementById('answer');
-
-const choiceButtons = document.querySelector('ul');
-
-const generateQuestion = () => {
+const generateQuestions = () => {
     let i = Math.floor(Math.random() * questionsArray.length);
-    quizQuestion.innerHTML = questionsArray[i].question;
+    mainHead.innerHTML = questionsArray[i].question;
     quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
     quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
     quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
@@ -49,6 +65,6 @@ const generateQuestion = () => {
 
 };
 
-choiceButtons.addEventListener('click', generateQuestion);
+choiceButtons.addEventListener('click', generateQuestions);
 
-generateQuestion();
+// generateQuestions();
