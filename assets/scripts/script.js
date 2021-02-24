@@ -32,13 +32,14 @@ const startGame = () => {
 
 startGameButton.addEventListener('click', startGame);
 
+//The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
     choice1: {answer1: 'const array = {1,2,3}', correct: false,},
     choice2: {answer2: 'const array = [1,2,3]', correct: true,},
     choice3: {answer3: 'const array = (1,2,3)', correct: false,},
     choice4: {answer4: 'const array = <1,2,3>', correct: false,},
-    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
+    
     
 };
 
@@ -48,20 +49,19 @@ const question2 = {
     choice2: {answer2: 'null', correct: false,},
     choice3: {answer3: 'false', correct: true,},
     choice4: {answer4: 'NaN', correct: false,},
-    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
     
 };
 
 const question3 = {
     question: 'Which array method adds an element to the end of an array?',
-    choice1: {answer1: '.push', correct: true,},
-    choice2: {answer2: '.pull', correct: false,},
+    choice1: {answer1: '.pull', correct: false,},
+    choice2: {answer2: '.push', correct: true,},
     choice3: {answer3: '.pop', correct: false,},
     choice4: {answer4: '.shift', correct: false,},
-    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
     
 };
 
+//Array of all questions
 const questionsArray = [question1, question2, question3];
 
 
@@ -85,15 +85,15 @@ const generateQuestions = () => {
     quizChoice4.setAttribute('data-correct', currentQuestion.choice4.correct);
 
     questionsArray.splice(i, 1);
+
+    quizChoice1.addEventListener('click', function() {
+        console.log(quizChoice1.dataset.correct);
+        if (quizChoice1.dataset.correct === false) {
+            answer.innerHTML = 'Incorrect';
+        } else {
+            answer.innerHTML = 'That is correct!';
+        }
+    });
+    
 };
 
-console.log(quizChoice1.dataset.correct);
-
-quizChoice1.addEventListener('click', function() {
-    
-    if (quizChoice1.dataset.correct === false) {
-        answer.innerHTML = 'Incorrect';
-    } else {
-        answer.innerHTML = 'That is correct!';
-    }
-});
