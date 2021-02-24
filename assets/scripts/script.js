@@ -19,7 +19,7 @@ let timeLeft = 60;
 time.innerHTML = timeLeft;
 
 
-//Introduction to the game with button to begin
+//Introduction to the game with Start Game button
 mainHead.innerHTML = 'Coding Quiz Challenge';
 explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
 startGameButton.innerHTML = 'Start Game';
@@ -41,13 +41,13 @@ const timer = () => {
     
         if(timeLeft <= 0) {
           clearInterval(timerInterval);
-          // Calls function to create and append image
           alert('Time up!');
         }
     
       }, 1000);
 };
 
+//Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);
 
 //The set of questions
@@ -106,42 +106,51 @@ const question6 = {
     
 };
 
+//An array of all the questions
 const questionsArray = [question1, question2, question3, question4, question5, question6];
 
-
-
-
+//Generates the quiz questions
 const generateQuestions = () => {
+    //Randomly picks a question from the questionsArray
     let i = Math.floor(Math.random() * questionsArray.length);
 
+    //The question currently on the screen
     currentQuestion = questionsArray[i];
 
-    mainHead.innerHTML = questionsArray[i].question;
+    //Prints the current question 
+    mainHead.innerHTML = currentQuestion.question;
 
-    quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
+    //Prints the first choice of the current question and sets response attribute
+    quizChoice1.innerHTML = currentQuestion.choice1.answer1;
     quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
 
-    quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
+    //Prints the second choice of the current question and sets response attribute
+    quizChoice2.innerHTML = currentQuestion.choice2.answer2;
     quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
 
-    quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
+    //Prints the third choice of the current question and sets response attribute
+    quizChoice3.innerHTML = currentQuestion.choice3.answer3;
     quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
 
-    quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
+    //Prints the fourth choice of the current question and sets response attribute
+    quizChoice4.innerHTML = currentQuestion.choice4.answer4;
     quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
 
+    //Removes the current question from the questionsArray
     questionsArray.splice(i, 1);
-
+    
     
 };
 
 //Returns response of Button 1
 quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
+        //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
         timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
+        //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
         generateQuestions();
     }
@@ -150,10 +159,12 @@ quizChoice1.addEventListener('click', function() {
 //Returns response of Button 2
 quizChoice2.addEventListener('click', function() {
     if (quizChoice2.dataset.response === 'false') {
+        //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
         timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
+        //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
     }   generateQuestions();
 });
@@ -161,10 +172,12 @@ quizChoice2.addEventListener('click', function() {
 //Returns response of Button 3
 quizChoice3.addEventListener('click', function() {
     if (quizChoice3.dataset.response === 'false') {
+        //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
         timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
+        //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
         generateQuestions();
     }
@@ -172,11 +185,13 @@ quizChoice3.addEventListener('click', function() {
 
 //Returns response of Button 4
 quizChoice4.addEventListener('click', function() {
+    //Prints response, deducts 10 seconds, re-executes generateQuestions
     if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
         timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
+        //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
         generateQuestions();
     }
