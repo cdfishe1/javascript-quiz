@@ -86,14 +86,15 @@ const generateQuestions = () => {
 
     questionsArray.splice(i, 1);
 
-    quizChoice1.addEventListener('click', function() {
-        console.log(quizChoice1.dataset.correct);
-        if (quizChoice1.dataset.correct === false) {
-            answer.innerHTML = 'Incorrect';
-        } else {
-            answer.innerHTML = 'That is correct!';
-        }
-    });
     
 };
+
+quizChoice1.addEventListener('click', function() {
+    console.log(quizChoice1.dataset.correct);
+    if (quizChoice1.dataset.correct === false) {
+        answer.innerHTML = 'Incorrect';
+    } else {
+        answer.innerHTML = 'That is correct!';
+    }
+});
 
