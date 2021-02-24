@@ -1,4 +1,6 @@
 //Variables
+
+
 const mainHead = document.querySelector('h1');
 const quizChoice1 = document.getElementById('choice1');
 const quizChoice2 = document.getElementById('choice2');
@@ -8,6 +10,12 @@ const quizAnswer = document.getElementById('answer');
 const choiceButtons = document.querySelector('ul');
 const explain = document.getElementById('gameExplanation');
 const startGameButton = document.getElementById('startGame');
+const answer = document.getElementById('answer');
+const choiceArray = [quizChoice1, quizChoice2, quizChoice3, quizChoice4];
+let currentQuestion;
+let choice1Answer;
+
+
 
 //Introduction to the game with button to begin
 mainHead.innerHTML = 'Coding Quiz Challenge';
@@ -18,53 +26,74 @@ startGameButton.innerHTML = 'Start Game';
 const startGame = () => {
     choiceButtons.style.display = 'initial';
     startGameButton.style.display = 'none';
+    explain.style.display = 'none';
     generateQuestions();
 };
 
 startGameButton.addEventListener('click', startGame);
 
-
-
 const question1 = {
     question: 'How do you construct an array in Javascript?',
-    choice1: {answer1: 'const array = {1,2,3}', value: false,},
-    choice2: {answer2: 'const array = [1,2,3]', value: true,},
-    choice3: {answer3: 'const array = (1,2,3)', value: false,},
-    choice4: {answer4: 'const array = <1,2,3>', value: false,},
+    choice1: {answer1: 'const array = {1,2,3}', correct: false,},
+    choice2: {answer2: 'const array = [1,2,3]', correct: true,},
+    choice3: {answer3: 'const array = (1,2,3)', correct: false,},
+    choice4: {answer4: 'const array = <1,2,3>', correct: false,},
+    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
     
 };
 
 const question2 = {
     question: 'What is the value passed when clicking "cancel" in a Confirm Box?',
-    choice1: {answer1: 'true', value: false,},
-    choice2: {answer2: 'null', value: false,},
-    choice3: {answer3: 'false', value: true,},
-    choice4: {answer4: 'NaN', value: false,},
+    choice1: {answer1: 'true', correct: false,},
+    choice2: {answer2: 'null', correct: false,},
+    choice3: {answer3: 'false', correct: true,},
+    choice4: {answer4: 'NaN', correct: false,},
+    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
     
 };
 
 const question3 = {
     question: 'Which array method adds an element to the end of an array?',
-    choice1: {answer1: '.push', value: true,},
-    choice2: {answer2: '.pull', value: false,},
-    choice3: {answer3: '.pop', value: false,},
-    choice4: {answer4: '.shift', value: false,},
+    choice1: {answer1: '.push', correct: true,},
+    choice2: {answer2: '.pull', correct: false,},
+    choice3: {answer3: '.pop', correct: false,},
+    choice4: {answer4: '.shift', correct: false,},
+    choiceArray: [this.choice1, this.choice2, this.choice3, this.choice4],
     
 };
 
 const questionsArray = [question1, question2, question3];
 
+
 const generateQuestions = () => {
     let i = Math.floor(Math.random() * questionsArray.length);
-    mainHead.innerHTML = questionsArray[i].question;
-    quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
-    quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
-    quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
-    quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
-    questionsArray.splice(i, 1);
 
+    currentQuestion = questionsArray[i];
+
+    mainHead.innerHTML = questionsArray[i].question;
+
+    quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
+    quizChoice1.setAttribute('data-correct', currentQuestion.choice1.correct);
+
+    quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
+    quizChoice2.setAttribute('data-correct', currentQuestion.choice2.correct);
+
+    quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
+    quizChoice3.setAttribute('data-correct', currentQuestion.choice3.correct);
+
+    quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
+    quizChoice4.setAttribute('data-correct', currentQuestion.choice4.correct);
+
+    questionsArray.splice(i, 1);
 };
 
-choiceButtons.addEventListener('click', generateQuestions);
+console.log(quizChoice1.dataset.correct);
 
-// generateQuestions();
+quizChoice1.addEventListener('click', function() {
+    
+    if (quizChoice1.dataset.correct === false) {
+        answer.innerHTML = 'Incorrect';
+    } else {
+        answer.innerHTML = 'That is correct!';
+    }
+});
