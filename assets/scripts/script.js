@@ -34,10 +34,10 @@ startGameButton.addEventListener('click', startGame);
 //The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
-    choice1: {answer1: 'const array = {1,2,3}', response: 'false',},
-    choice2: {answer2: 'const array = [1,2,3]', response: 'true',},
-    choice3: {answer3: 'const array = (1,2,3)', response: 'false',},
-    choice4: {answer4: 'const array = <1,2,3>', response: 'false',},
+    choice1: {answer1: '{1,2,3}', response: 'false',},
+    choice2: {answer2: '[1,2,3]', response: 'true',},
+    choice3: {answer3: '(1,2,3)', response: 'false',},
+    choice4: {answer4: '<1,2,3>', response: 'false',},
     
     
 };
@@ -53,15 +53,42 @@ const question2 = {
 
 const question3 = {
     question: 'Which array method adds an element to the end of an array?',
-    choice1: {answer1: '.pull', response: 'false',},
-    choice2: {answer2: '.push', response: 'true',},
-    choice3: {answer3: '.pop', response: 'false',},
-    choice4: {answer4: '.shift', response: 'false',},
+    choice1: {answer1: 'pull', response: 'false',},
+    choice2: {answer2: 'push', response: 'true',},
+    choice3: {answer3: 'pop', response: 'false',},
+    choice4: {answer4: 'shift', response: 'false',},
+    
+};
+
+const question4 = {
+    question: 'What unit measures font size relative to the root element?',
+    choice1: {answer1: 'px', response: 'false',},
+    choice2: {answer2: 'vh', response: 'false',},
+    choice3: {answer3: 'em', response: 'false',},
+    choice4: {answer4: 'rem', response: 'true',},
+    
+};
+
+const question5 = {
+    question: 'Which display property removes an element out of the normal flow of the document?',
+    choice1: {answer1: 'relative', response: 'false',},
+    choice2: {answer2: 'sticky', response: 'false',},
+    choice3: {answer3: 'absolute', response: 'true',},
+    choice4: {answer4: 'static', response: 'false',},
+    
+};
+
+const question6 = {
+    question: 'Which value is falsy in Javascript?',
+    choice1: {answer1: "'true'", response: 'false',},
+    choice2: {answer2: "'false'", response: 'false',},
+    choice3: {answer3: '42', response: 'false',},
+    choice4: {answer4: 'null', response: 'true',},
     
 };
 
 //Array of all questions
-const questionsArray = [question1, question2, question3];
+const questionsArray = [question1, question2, question3, question4, question5, question6];
 
 
 const generateQuestions = () => {
@@ -88,35 +115,46 @@ const generateQuestions = () => {
     
 };
 
+//Returns response of Button 1
 quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
+        generateQuestions();
     }
 });
 
+//Returns response of Button 2
 quizChoice2.addEventListener('click', function() {
     if (quizChoice2.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
-    }
+    }   generateQuestions();
 });
 
+//Returns response of Button 3
 quizChoice3.addEventListener('click', function() {
     if (quizChoice3.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
+        generateQuestions();
     }
 });
 
+//Returns response of Button 4
 quizChoice4.addEventListener('click', function() {
     if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
+        generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
+        generateQuestions();
     }
 });
 
