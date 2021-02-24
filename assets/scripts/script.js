@@ -11,9 +11,12 @@ const choiceButtons = document.querySelector('ul');
 const explain = document.getElementById('gameExplanation');
 const startGameButton = document.getElementById('startGame');
 const answer = document.getElementById('answer');
+const time = document.getElementById('countDown')
 const choiceArray = [quizChoice1, quizChoice2, quizChoice3, quizChoice4];
-let currentQuestion;
 
+let currentQuestion;
+let timeLeft = 60;
+time.innerHTML = timeLeft;
 
 
 //Introduction to the game with button to begin
@@ -26,7 +29,23 @@ const startGame = () => {
     choiceButtons.style.display = 'initial';
     startGameButton.style.display = 'none';
     explain.style.display = 'none';
+    timer();
     generateQuestions();
+};
+
+//Timer
+const timer = () => {
+    let timerInterval = setInterval(function() {
+        timeLeft--;
+        time.innerHTML = timeLeft;
+    
+        if(timeLeft <= 0) {
+          clearInterval(timerInterval);
+          // Calls function to create and append image
+          alert('Time up!');
+        }
+    
+      }, 1000);
 };
 
 startGameButton.addEventListener('click', startGame);
@@ -87,8 +106,9 @@ const question6 = {
     
 };
 
-//Array of all questions
 const questionsArray = [question1, question2, question3, question4, question5, question6];
+
+
 
 
 const generateQuestions = () => {
@@ -119,6 +139,7 @@ const generateQuestions = () => {
 quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
@@ -130,6 +151,7 @@ quizChoice1.addEventListener('click', function() {
 quizChoice2.addEventListener('click', function() {
     if (quizChoice2.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
@@ -140,6 +162,7 @@ quizChoice2.addEventListener('click', function() {
 quizChoice3.addEventListener('click', function() {
     if (quizChoice3.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
+        timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
@@ -151,10 +174,13 @@ quizChoice3.addEventListener('click', function() {
 quizChoice4.addEventListener('click', function() {
     if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
+        timeLeft = timeLeft - 10;
         generateQuestions();
     } else {
         answer.innerHTML = 'That is correct!';
         generateQuestions();
     }
 });
+
+
 
