@@ -1,4 +1,13 @@
 /* Question and choices list */
+
 main ul {
+    display: none;
+}
+
+.game-score {
+    display: none;
+};
+
+.answer-response {
     display: none;
 }

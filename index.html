@@ -9,13 +9,14 @@
 </head>
 <body>
     <header>
-        <p>Final Score: <span id='finalScore'></span></p>
+        <p>View High Scores<span id='highScores'></span></p>
         <p>Time:<span id='countDown'></span></p>
+        
     </header>
     <main>
         <h1></h1>
         <p id='gameExplanation'></p>
-        <button id='startGame'></button>
+        <button id='startGame' class='start-game-button'></button>
         <ul>
             <li><button  id='choice1' class='choice-button'></button></li>
             <li><button  id='choice2' class='choice-button'></button></li>
@@ -23,7 +24,8 @@
             <li><button  id='choice4' class='choice-button'></button></li>
         </ul>
 
-        <p id='answer'></p>
+        <p id='answer' class = 'answer-response'></p>
+        <p class='game-score'>class='game-score'>Your score <span id='score'></span></p>
     </main>
     <script src='./assets/scripts/script.js'></script>
 </body>

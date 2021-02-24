@@ -12,10 +12,9 @@ const explain = document.getElementById('gameExplanation');
 const startGameButton = document.getElementById('startGame');
 const answer = document.getElementById('answer');
 const time = document.getElementById('countDown')
-const choiceArray = [quizChoice1, quizChoice2, quizChoice3, quizChoice4];
+const score = document.getElementsByClassName('score');
 
-let currentQuestion;
-let timeLeft = 60;
+let timeLeft = 10;
 time.innerHTML = timeLeft;
 
 
@@ -26,9 +25,9 @@ startGameButton.innerHTML = 'Start Game';
 
 //Start the Game
 const startGame = () => {
-    choiceButtons.style.display = 'initial';
     startGameButton.style.display = 'none';
     explain.style.display = 'none';
+    choiceButtons.style.display = 'initial';
     timer();
     generateQuestions();
 };
@@ -39,9 +38,9 @@ const timer = () => {
         timeLeft--;
         time.innerHTML = timeLeft;
     
-        if(timeLeft <= 0) {
+        if(timeLeft = 0) {
           clearInterval(timerInterval);
-          alert('Time up!');
+          endGame();
         }
     
       }, 1000);
@@ -196,6 +195,17 @@ quizChoice4.addEventListener('click', function() {
         generateQuestions();
     }
 });
+
+//Endgame
+
+const endGame = () => {
+    choiceButtons.style.display = none;
+    answer.style.display = none;
+    mainHead.innerHTML = 'All Done!';
+    score.innerHTML = timeLeft;
+    
+
+};
 
 
 
