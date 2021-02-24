@@ -13,7 +13,6 @@ const startGameButton = document.getElementById('startGame');
 const answer = document.getElementById('answer');
 const choiceArray = [quizChoice1, quizChoice2, quizChoice3, quizChoice4];
 let currentQuestion;
-let choice1Answer;
 
 
 
@@ -35,29 +34,29 @@ startGameButton.addEventListener('click', startGame);
 //The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
-    choice1: {answer1: 'const array = {1,2,3}', correct: false,},
-    choice2: {answer2: 'const array = [1,2,3]', correct: true,},
-    choice3: {answer3: 'const array = (1,2,3)', correct: false,},
-    choice4: {answer4: 'const array = <1,2,3>', correct: false,},
+    choice1: {answer1: 'const array = {1,2,3}', response: 'false',},
+    choice2: {answer2: 'const array = [1,2,3]', response: 'true',},
+    choice3: {answer3: 'const array = (1,2,3)', response: 'false',},
+    choice4: {answer4: 'const array = <1,2,3>', response: 'false',},
     
     
 };
 
 const question2 = {
     question: 'What is the value passed when clicking "cancel" in a Confirm Box?',
-    choice1: {answer1: 'true', correct: false,},
-    choice2: {answer2: 'null', correct: false,},
-    choice3: {answer3: 'false', correct: true,},
-    choice4: {answer4: 'NaN', correct: false,},
+    choice1: {answer1: 'true', response: 'false',},
+    choice2: {answer2: 'null', response: 'false',},
+    choice3: {answer3: 'false', response: 'true',},
+    choice4: {answer4: 'NaN', response: 'false',},
     
 };
 
 const question3 = {
     question: 'Which array method adds an element to the end of an array?',
-    choice1: {answer1: '.pull', correct: false,},
-    choice2: {answer2: '.push', correct: true,},
-    choice3: {answer3: '.pop', correct: false,},
-    choice4: {answer4: '.shift', correct: false,},
+    choice1: {answer1: '.pull', response: 'false',},
+    choice2: {answer2: '.push', response: 'true',},
+    choice3: {answer3: '.pop', response: 'false',},
+    choice4: {answer4: '.shift', response: 'false',},
     
 };
 
@@ -73,16 +72,16 @@ const generateQuestions = () => {
     mainHead.innerHTML = questionsArray[i].question;
 
     quizChoice1.innerHTML = questionsArray[i].choice1.answer1;
-    quizChoice1.setAttribute('data-correct', currentQuestion.choice1.correct);
+    quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
 
     quizChoice2.innerHTML = questionsArray[i].choice2.answer2;
-    quizChoice2.setAttribute('data-correct', currentQuestion.choice2.correct);
+    quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
 
     quizChoice3.innerHTML = questionsArray[i].choice3.answer3;
-    quizChoice3.setAttribute('data-correct', currentQuestion.choice3.correct);
+    quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
 
     quizChoice4.innerHTML = questionsArray[i].choice4.answer4;
-    quizChoice4.setAttribute('data-correct', currentQuestion.choice4.correct);
+    quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
 
     questionsArray.splice(i, 1);
 
@@ -90,7 +89,7 @@ const generateQuestions = () => {
 };
 
 quizChoice1.addEventListener('click', function() {
-    if (quizChoice1.dataset.correct === 'false') {
+    if (quizChoice1.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
     } else {
         answer.innerHTML = 'That is correct!';
@@ -98,7 +97,7 @@ quizChoice1.addEventListener('click', function() {
 });
 
 quizChoice2.addEventListener('click', function() {
-    if (quizChoice2.dataset.correct === 'false') {
+    if (quizChoice2.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
     } else {
         answer.innerHTML = 'That is correct!';
@@ -106,7 +105,7 @@ quizChoice2.addEventListener('click', function() {
 });
 
 quizChoice3.addEventListener('click', function() {
-    if (quizChoice3.dataset.correct === 'false') {
+    if (quizChoice3.dataset.response === 'false') {
         answer.innerHTML = 'Incorrect';
     } else {
         answer.innerHTML = 'That is correct!';
@@ -114,7 +113,7 @@ quizChoice3.addEventListener('click', function() {
 });
 
 quizChoice4.addEventListener('click', function() {
-    if (quizChoice4.dataset.correct === 'false') {
+    if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
     } else {
         answer.innerHTML = 'That is correct!';
