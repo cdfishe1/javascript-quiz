@@ -90,9 +90,32 @@ const generateQuestions = () => {
 };
 
 quizChoice1.addEventListener('click', function() {
-    console.log(quizChoice1.dataset.correct);
-    if (quizChoice1.dataset.correct === false) {
+    if (quizChoice1.dataset.correct === 'false') {
         answer.innerHTML = 'Incorrect';
+    } else {
+        answer.innerHTML = 'That is correct!';
+    }
+});
+
+quizChoice2.addEventListener('click', function() {
+    if (quizChoice2.dataset.correct === 'false') {
+        answer.innerHTML = 'Incorrect';
+    } else {
+        answer.innerHTML = 'That is correct!';
+    }
+});
+
+quizChoice3.addEventListener('click', function() {
+    if (quizChoice3.dataset.correct === 'false') {
+        answer.innerHTML = 'Incorrect';
+    } else {
+        answer.innerHTML = 'That is correct!';
+    }
+});
+
+quizChoice4.addEventListener('click', function() {
+    if (quizChoice4.dataset.correct === 'false') {
+        answer.innerHTML = 'That is incorrect.';
     } else {
         answer.innerHTML = 'That is correct!';
     }
