@@ -14,6 +14,7 @@ const time = document.getElementById('countDown');
 const score = document.getElementById('score');
 const gameScore = document.getElementById('gameScore');
 const playerInitials = document.getElementById('playerInitials');
+const saveButton = document.getElementById('save');
 
 let timeLeft = 60;
 
@@ -214,8 +215,28 @@ const endGame = () => {
 
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;
+};
+
+saveButton.addEventListener('click', function(event) {
+    event.preventDefault();
     
 
+    const storeScores = {
+        initials: initials.value,
+        score: score.value,
+    }
+
+    localStorage.setItem("storeScores", JSON.stringify(storeScores));
+    renderScores(); 
+});
+
+const renderScores = () => {
+    let lastScore = JSON.parse(localStorage.getItem("storeScores"));
+
+    if (lastScore !== null) {
+        document.getElementById("highScores").textContent = lastScore.initials + ' scored '
+        lastScore.score;
+      }
 };
 
 
