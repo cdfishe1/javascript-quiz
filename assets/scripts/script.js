@@ -1,6 +1,5 @@
 //Variables
 
-
 const mainHead = document.querySelector('h1');
 const quizChoice1 = document.getElementById('choice1');
 const quizChoice2 = document.getElementById('choice2');
@@ -17,36 +16,7 @@ const gameScore = document.getElementById('gameScore');
 
 let timeLeft = 60;
 
-//Introduction to the game with Start Game button
-mainHead.innerHTML = 'Coding Quiz Challenge';
-explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
-startGameButton.innerHTML = 'Start Game';
-
-//Start the Game
-const startGame = () => {
-    startGameButton.style.display = 'none';
-    explain.style.display = 'none';
-    choiceButtons.style.display = 'initial';
-    generateQuestions();
-    timer();
-};
-
-//Timer
-const timer = () => {
-    let timerInterval = setInterval(function() {
-        timeLeft--;
-        time.innerHTML = timeLeft;
-        //Executes endGame if timer reaches 0 or all questions have passed.
-        if((timeLeft <= 0) || (removedQuestions.length === 6)) {
-          clearInterval(timerInterval);
-          endGame();
-        }
-    
-      }, 1000);
-};
-
-//Executes the startGame function when Start Game button is clicked.
-startGameButton.addEventListener('click', startGame);
+let removedQuestions = [];
 
 //The set of questions
 const question1 = {
@@ -107,11 +77,44 @@ const question6 = {
 //An array of all the questions
 const questionsArray = [question1, question2, question3, question4, question5, question6];
 
-let removedQuestions = [];
-console.log(removedQuestions);
+//Introduction to the game with Start Game button
+mainHead.innerHTML = 'Coding Quiz Challenge';
+explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
+startGameButton.innerHTML = 'Start Game';
+
+//Start the Game
+const startGame = () => {
+    startGameButton.style.display = 'none';
+    explain.style.display = 'none';
+    choiceButtons.style.display = 'initial';
+    generateQuestions();
+    timer();
+};
+
+//Timer
+const timer = () => {
+    let timerInterval = setInterval(function() {
+        timeLeft--;
+        time.innerHTML = timeLeft;
+        //Executes endGame if timer reaches 0 or all questions have passed.
+        if((timeLeft <= 0) || (removedQuestions.length === 6)) {
+          clearInterval(timerInterval);
+          endGame();
+        }
+    
+      }, 1000);
+};
+
+//Executes the startGame function when Start Game button is clicked.
+startGameButton.addEventListener('click', startGame);
+
 
 //Generates the quiz questions
 const generateQuestions = () => {
+
+    if (removedQuestions.length === 6) {
+        endGame();
+    }
     
     //Randomly picks a question from the questionsArray
     let i = Math.floor(Math.random() * questionsArray.length);
