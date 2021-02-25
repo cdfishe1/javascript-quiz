@@ -15,6 +15,7 @@ const score = document.getElementById('score');
 const gameScore = document.getElementById('gameScore');
 const playerInitials = document.getElementById('playerInitials');
 const saveButton = document.getElementById('save');
+const playAgaiin = document.getElementById('playAgain');
 
 let timeLeft = 60;
 
@@ -204,6 +205,8 @@ const endGame = () => {
     answer.style.display = 'none';
     gameScore.style.display = 'initial';
     playerInitials.style.display = 'initial';
+    playAgain.style.display = 'initial';
+    playAgain.innerHTML = 'Play Again?'
 
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;

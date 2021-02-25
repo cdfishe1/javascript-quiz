@@ -24,3 +24,7 @@ main ul li {
 .high-scores {
     margin-left: 1vw;
 }
+
+.again-button {
+    display: none;
+}
