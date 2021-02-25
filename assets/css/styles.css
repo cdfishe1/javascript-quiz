@@ -4,6 +4,10 @@ main ul {
     display: none;
 }
 
+main ul li {
+    margin: 2vh 2vw;
+}
+
 .game-score {
     display: none;
 };

@@ -15,7 +15,7 @@ const time = document.getElementById('countDown');
 const score = document.getElementById('score');
 const gameScore = document.getElementById('gameScore');
 
-let timeLeft = 3;
+let timeLeft = 60;
 
 //Introduction to the game with Start Game button
 mainHead.innerHTML = 'Coding Quiz Challenge';
@@ -37,7 +37,7 @@ const timer = () => {
         timeLeft--;
         time.innerHTML = timeLeft;
     
-        if(timeLeft <= 0) {
+        if((timeLeft <= 0) || (removedQuestions.length === 6)) {
           clearInterval(timerInterval);
           endGame();
         }
@@ -107,8 +107,12 @@ const question6 = {
 //An array of all the questions
 const questionsArray = [question1, question2, question3, question4, question5, question6];
 
+let removedQuestions = [];
+console.log(removedQuestions);
+
 //Generates the quiz questions
 const generateQuestions = () => {
+    
     //Randomly picks a question from the questionsArray
     let i = Math.floor(Math.random() * questionsArray.length);
 
@@ -135,7 +139,11 @@ const generateQuestions = () => {
     quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
 
     //Removes the current question from the questionsArray
-    questionsArray.splice(i, 1);
+    removedQuestions.push(questionsArray.splice(i, 1));
+    console.log(removedQuestions);
+    // if (removedQuestions.length === 6) {
+    //     endGame();
+    // }
     
     
 };
