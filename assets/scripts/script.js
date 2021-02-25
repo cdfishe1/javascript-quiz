@@ -14,9 +14,7 @@ const answer = document.getElementById('answer');
 const time = document.getElementById('countDown')
 const score = document.getElementsByClassName('score');
 
-let timeLeft = 10;
-time.innerHTML = timeLeft;
-
+let timeLeft = 60;
 
 //Introduction to the game with Start Game button
 mainHead.innerHTML = 'Coding Quiz Challenge';
@@ -28,8 +26,8 @@ const startGame = () => {
     startGameButton.style.display = 'none';
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
-    timer();
     generateQuestions();
+    timer();
 };
 
 //Timer
@@ -38,7 +36,7 @@ const timer = () => {
         timeLeft--;
         time.innerHTML = timeLeft;
     
-        if(timeLeft = 0) {
+        if(timeLeft <= 0) {
           clearInterval(timerInterval);
           endGame();
         }
