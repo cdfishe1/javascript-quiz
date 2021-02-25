@@ -36,7 +36,7 @@ const timer = () => {
     let timerInterval = setInterval(function() {
         timeLeft--;
         time.innerHTML = timeLeft;
-    
+        //Executes endGame if timer reaches 0 or all questions have passed.
         if((timeLeft <= 0) || (removedQuestions.length === 6)) {
           clearInterval(timerInterval);
           endGame();
@@ -138,12 +138,8 @@ const generateQuestions = () => {
     quizChoice4.innerHTML = currentQuestion.choice4.answer4;
     quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
 
-    //Removes the current question from the questionsArray
+    //Removes the current question from the questionsArray and pushes it to removedQuestions
     removedQuestions.push(questionsArray.splice(i, 1));
-    console.log(removedQuestions);
-    // if (removedQuestions.length === 6) {
-    //     endGame();
-    // }
     
     
 };
