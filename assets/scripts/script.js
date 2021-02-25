@@ -13,6 +13,7 @@ const answer = document.getElementById('answer');
 const time = document.getElementById('countDown');
 const score = document.getElementById('score');
 const gameScore = document.getElementById('gameScore');
+const playerInitials = document.getElementById('playerInitials');
 
 let timeLeft = 60;
 
@@ -152,7 +153,8 @@ quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
-        timeLeft = timeLeft - 10;
+        timeLeft
+         = timeLeft - 10;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
@@ -208,6 +210,8 @@ const endGame = () => {
     choiceButtons.style.display = 'none';
     answer.style.display = 'none';
     gameScore.style.display = 'initial';
+    playerInitials.style.display = 'initial';
+
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;
     

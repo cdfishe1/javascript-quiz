@@ -10,8 +10,13 @@ main ul li {
 
 .game-score {
     display: none;
+    
 };
 
 .answer-response {
+    display: none;
+}
+
+.initials-form {
     display: none;
 }
