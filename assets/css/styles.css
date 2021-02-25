@@ -20,3 +20,7 @@ main ul li {
 .initials-form {
     display: none;
 }
+
+.high-scores {
+    margin-left: 1vw;
+}

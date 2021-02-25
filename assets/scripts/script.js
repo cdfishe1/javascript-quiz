@@ -223,7 +223,7 @@ saveButton.addEventListener('click', function(event) {
 
     const storeScores = {
         initials: initials.value,
-        score: score.value,
+        timeLeft: timeLeft.value,
     }
 
     localStorage.setItem("storeScores", JSON.stringify(storeScores));
@@ -235,7 +235,7 @@ const renderScores = () => {
 
     if (lastScore !== null) {
         document.getElementById("highScores").textContent = lastScore.initials + ' scored '
-        lastScore.score;
+        lastScore.timeLeft;
       }
 };
 
