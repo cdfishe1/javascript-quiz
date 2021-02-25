@@ -99,7 +99,8 @@ const timer = () => {
         timeLeft--;
         time.innerHTML = timeLeft;
         //Executes endGame if timer reaches 0 or all questions have passed.
-        if((timeLeft <= 0) || (removedQuestions.length === 6)) {
+        console.log(questionsArray);
+        if((timeLeft <= 0) || questionsArray.length === 0) {
           clearInterval(timerInterval);
           endGame();
         }
@@ -112,50 +113,41 @@ startGameButton.addEventListener('click', startGame);
 
 
 //Generates the quiz questions
-const generateQuestions = () => {
+const generateQuestions = () => { 
 
-    if (removedQuestions.length === 6) {
-        endGame();
-    }
-    
     //Randomly picks a question from the questionsArray
     let i = Math.floor(Math.random() * questionsArray.length);
 
-    //The question currently on the screen
-    currentQuestion = questionsArray[i];
-
-    //Prints the current question 
-    mainHead.innerHTML = currentQuestion.question;
-
-    //Prints the first choice of the current question and sets response attribute
-    quizChoice1.innerHTML = currentQuestion.choice1.answer1;
-    quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
-
-    //Prints the second choice of the current question and sets response attribute
-    quizChoice2.innerHTML = currentQuestion.choice2.answer2;
-    quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
-
-    //Prints the third choice of the current question and sets response attribute
-    quizChoice3.innerHTML = currentQuestion.choice3.answer3;
-    quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
-
-    //Prints the fourth choice of the current question and sets response attribute
-    quizChoice4.innerHTML = currentQuestion.choice4.answer4;
-    quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
-
-    //Removes the current question from the questionsArray and pushes it to removedQuestions
-    removedQuestions.push(questionsArray.splice(i, 1));
-    
-    
-};
+    if (questionsArray.length > 0) {
+      //The question currently on the screen
+      currentQuestion = questionsArray[i];
+      //Prints the current question
+      mainHead.innerHTML = currentQuestion.question;
+      //Prints the first choice of the current question and sets response attribute
+      quizChoice1.innerHTML = currentQuestion.choice1.answer1;
+      quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
+      //Prints the second choice of the current question and sets response attribute
+      quizChoice2.innerHTML = currentQuestion.choice2.answer2;
+      quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
+      //Prints the third choice of the current question and sets response attribute
+      quizChoice3.innerHTML = currentQuestion.choice3.answer3;
+      quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
+      //Prints the fourth choice of the current question and sets response attribute
+      quizChoice4.innerHTML = currentQuestion.choice4.answer4;
+      quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
+      //Removes the current question from the questionsArray and pushes it to removedQuestions
+      removedQuestions.push(questionsArray.splice(i, 1));
+    } else {
+      endGame();
+    }
+  };
 
 //Returns response of Button 1
 quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
-        timeLeft
-         = timeLeft - 10;
+        timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
@@ -169,7 +161,7 @@ quizChoice2.addEventListener('click', function() {
     if (quizChoice2.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
-        timeLeft = timeLeft - 10;
+        timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
@@ -182,7 +174,7 @@ quizChoice3.addEventListener('click', function() {
     if (quizChoice3.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'Incorrect';
-        timeLeft = timeLeft - 10;
+        timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
@@ -196,7 +188,7 @@ quizChoice4.addEventListener('click', function() {
     //Prints response, deducts 10 seconds, re-executes generateQuestions
     if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
-        timeLeft = timeLeft - 10;
+        timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
