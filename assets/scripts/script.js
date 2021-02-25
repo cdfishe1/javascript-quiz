@@ -205,9 +205,6 @@ const endGame = () => {
     answer.style.display = 'none';
     gameScore.style.display = 'initial';
     playerInitials.style.display = 'initial';
-    playAgain.style.display = 'initial';
-    playAgain.innerHTML = 'Play Again?'
-
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;
 };
@@ -233,6 +230,8 @@ const renderScores = () => {
         lastScore.timeLeft;
       }
 };
+
+
 
 
 
