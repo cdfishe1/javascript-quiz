@@ -11,10 +11,11 @@ const choiceButtons = document.querySelector('ul');
 const explain = document.getElementById('gameExplanation');
 const startGameButton = document.getElementById('startGame');
 const answer = document.getElementById('answer');
-const time = document.getElementById('countDown')
-const score = document.getElementsByClassName('score');
+const time = document.getElementById('countDown');
+const score = document.getElementById('score');
+const gameScore = document.getElementById('gameScore');
 
-let timeLeft = 60;
+let timeLeft = 3;
 
 //Introduction to the game with Start Game button
 mainHead.innerHTML = 'Coding Quiz Challenge';
@@ -197,8 +198,9 @@ quizChoice4.addEventListener('click', function() {
 //Endgame
 
 const endGame = () => {
-    choiceButtons.style.display = none;
-    answer.style.display = none;
+    choiceButtons.style.display = 'none';
+    answer.style.display = 'none';
+    gameScore.style.display = 'initial';
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;
     
