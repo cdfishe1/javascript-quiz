@@ -91,23 +91,23 @@ const startGame = () => {
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
     generateQuestions();
-    timer();
+    // timer();
 };
 
 //Timer
-const timer = () => {
-    let timerInterval = setInterval(function() {
-        timeLeft--;
-        time.innerHTML = timeLeft;
-        //Executes endGame if timer reaches 0 or all questions have passed.
-        console.log(questionsArray);
-        if((timeLeft <= 0) || questionsArray.length === 0) {
-          clearInterval(timerInterval);
-          endGame();
-        }
+// const timer = () => {
+//     let timerInterval = setInterval(function() {
+//         timeLeft--;
+//         time.innerHTML = timeLeft;
+//         //Executes endGame if timer reaches 0 or all questions have passed.
+//         console.log(questionsArray);
+//         if((timeLeft <= 0) || questionsArray.length === 0) {
+//           clearInterval(timerInterval);
+//           endGame();
+//         }
     
-      }, 1000);
-};
+//       }, 1000);
+// };
 
 //Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);
@@ -149,15 +149,15 @@ const allChoices = document.getElementsByClassName('choice-button');
 const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
-    if (quizChoice1.dataset.response === 'false') {
-        //Prints response, deducts 10 seconds, re-executes generateQuestions
+    if (button.dataset.response === 'false') {
+        //Prints response on false, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'That is incorrect.';
         answer.style.backgroundColor = '#9B223B';
         answer.style.color = '#fff';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
-        //Prints response, re-executes generateQuestions
+        //Prints response on true, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
         answer.style.backgroundColor = '#132A13';
         answer.style.color = '#fff';
