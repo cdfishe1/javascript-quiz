@@ -1,4 +1,30 @@
 /* Question and choices list */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.game-explain {
+    text-align: center;
+}
+
+.start-gamebutton {
+    align-self: center;
+}
+
+main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
 
 main ul {
     display: none;
