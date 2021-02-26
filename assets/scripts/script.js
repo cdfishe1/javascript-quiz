@@ -21,6 +21,7 @@ let timeLeft = 60;
 
 let removedQuestions = [];
 
+
 //The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
@@ -125,8 +126,6 @@ const generateQuestions = () => {
     if (questionsArray.length > 0) {
         //Sets game timer
         let timerInterval = setInterval(function() {
-            console.log(removedQuestions.length);
-            console.log(questionsArray.length);
             timeLeft--;
             time.innerHTML = timeLeft;
             //Executes endGame if timer reaches 0 or all questions have passed.
@@ -153,24 +152,27 @@ const generateQuestions = () => {
       quizChoice4.innerHTML = currentQuestion.choice4.answer4;
       quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
       //Removes the current question from the questionsArray and pushes it to removedQuestions
-        console.log(removedQuestions.length);
-        console.log(questionsArray.length);
       removedQuestions.push(questionsArray.splice(i, 1)); 
     } else {
-        const endGamePause = setTimeout(endGame, 10000);
-        clearTimeout(endGamePause);
-    //   endGame();
+        endGame();
     }
-};  
-  
+};
+let clicks = 0;  
+answerClicks = clicks;
+console.log(answerClicks);
+
 //Creates an array from the buttons nodelist and creates eventlistener for each choice button
 //David Metcalfe, bootcamp tutor, helped me understand and create this functionality
 const allChoices = document.getElementsByClassName('choice-button');
 const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
+    clicks++;
+    console.log(clicks);
+
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 10 seconds, re-executes generateQuestions
+
         answer.innerHTML = 'That is incorrect.';
         answer.style.backgroundColor = '#9B223B';
         answer.style.color = '#fff';
@@ -183,6 +185,7 @@ buttonsArray.forEach((button) => {
         answer.style.color = '#fff';
         generateQuestions();
     }
+    
   });
 });
 
