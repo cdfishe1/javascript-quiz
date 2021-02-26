@@ -155,9 +155,11 @@ const generateQuestions = () => {
       //Removes the current question from the questionsArray and pushes it to removedQuestions
         console.log(removedQuestions.length);
         console.log(questionsArray.length);
-      removedQuestions.push(questionsArray.splice(i, 1)); debugger;
+      removedQuestions.push(questionsArray.splice(i, 1)); 
     } else {
-      endGame();
+        const endGamePause = setTimeout(endGame, 5000);
+        clearTimeout(endGamePause);
+    //   endGame();
     }
 };  
   
@@ -185,6 +187,7 @@ buttonsArray.forEach((button) => {
 });
 
 //Endgame
+
 const endGame = () => {
     choiceButtons.style.display = 'none';
     answer.style.display = 'none';
@@ -193,6 +196,7 @@ const endGame = () => {
     mainHead.innerHTML = 'All Done!';
     score.innerHTML = timeLeft;
 };
+
 
 //Save button for initials. Sets up local storage for intials and score
 saveButton.addEventListener('click', function(event) {
