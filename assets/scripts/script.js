@@ -92,23 +92,23 @@ const startGame = () => {
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
     generateQuestions();
-    // timer();
+    timer();
 };
 
-// //Timer
-// const timer = () => {
-//     let timerInterval = setInterval(function() {
-//         timeLeft--;
-//         time.innerHTML = timeLeft;
-//         //Executes endGame if timer reaches 0 or all questions have passed.
-//         console.log(questionsArray);
-//         if((timeLeft <= 0) || questionsArray.length === 0) {
-//           clearInterval(timerInterval);
-//           endGame();
-//         }
+//Timer
+const timer = () => {
+    let timerInterval = setInterval(function() {
+        timeLeft--;
+        time.innerHTML = timeLeft;
+        //Executes endGame if timer reaches 0 or all questions have passed.
+        console.log(questionsArray);
+        if((timeLeft <= 0) || questionsArray.length === 0) {
+          clearInterval(timerInterval);
+          endGame();
+        }
     
-//       }, 1000);
-// };
+      }, 1000);
+};
 
 //Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);

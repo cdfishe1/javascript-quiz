@@ -99,7 +99,11 @@ main ul li {
 
 .game-score {
     display: none;
-    
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    padding: 1vh 1vw;
+    margin-top: 1vh;
+    font-size: 1.25rem;
 };
 
 .answer-response {
@@ -108,12 +112,17 @@ main ul li {
 
 .initials-form {
     display: none;
+    align-self: center;
+    font-size: 1.5rem;
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    padding: 1vh 1vw;
+}
+
+.save-button {
+    padding: 0.5vh 0.5vw;
 }
 
 .high-scores {
     margin-left: 1vw;
-}
-
-.again-button {
-    display: none;
 }
