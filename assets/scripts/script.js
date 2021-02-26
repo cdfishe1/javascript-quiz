@@ -142,10 +142,14 @@ const generateQuestions = () => {
     } else {
       endGame();
     }
-  };
-
-//Returns response of Button 1
-quizChoice1.addEventListener('click', function() {
+};  
+  
+//Creates an array from the buttons nodelist and creates eventlistener for each button
+//David Metcalfe, bootcamp tutor, helped me understand and create this functionality
+const allChoices = document.getElementsByClassName('choice-button');
+const buttonsArray = Array.from(allChoices);
+buttonsArray.forEach((button) => {
+  button.addEventListener('click', function () {
     if (quizChoice1.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
         answer.innerHTML = 'That is incorrect.';
@@ -160,59 +164,7 @@ quizChoice1.addEventListener('click', function() {
         answer.style.color = '#fff';
         generateQuestions();
     }
-});
-
-//Returns response of Button 2
-quizChoice2.addEventListener('click', function() {
-    if (quizChoice2.dataset.response === 'false') {
-        //Prints response, deducts 10 seconds, re-executes generateQuestions
-        answer.innerHTML = 'That is incorrect.';
-        answer.style.backgroundColor = '#9B223B';
-        answer.style.color = '#fff';
-        timeLeft = timeLeft - 5;
-        generateQuestions();
-    } else {
-        //Prints response, re-executes generateQuestions
-        answer.innerHTML = 'That is correct!';
-        answer.style.backgroundColor = '#132A13';
-        answer.style.color = '#fff';
-    }   generateQuestions();
-});
-
-//Returns response of Button 3
-quizChoice3.addEventListener('click', function() {
-    if (quizChoice3.dataset.response === 'false') {
-        //Prints response, deducts 10 seconds, re-executes generateQuestions
-        answer.innerHTML = 'That is incorrect.';
-        answer.style.backgroundColor = '#9B223B';
-        answer.style.color = '#fff';
-        timeLeft = timeLeft - 5;
-        generateQuestions();
-    } else {
-        //Prints response, re-executes generateQuestions
-        answer.innerHTML = 'That is correct!';
-        answer.style.backgroundColor = '#132A13';
-        answer.style.color = '#fff';
-        generateQuestions();
-    }
-});
-
-//Returns response of Button 4
-quizChoice4.addEventListener('click', function() {
-    //Prints response, deducts 10 seconds, re-executes generateQuestions
-    if (quizChoice4.dataset.response === 'false') {
-        answer.innerHTML = 'That is incorrect.';
-        answer.style.backgroundColor = '#9B223B';
-        answer.style.color = '#fff';
-        timeLeft = timeLeft - 5;
-        generateQuestions();
-    } else {
-        //Prints response, re-executes generateQuestions
-        answer.innerHTML = 'That is correct!';
-        answer.style.backgroundColor = '#132A13';
-        answer.style.color = '#fff';
-        generateQuestions();
-    }
+  });
 });
 
 //Endgame
