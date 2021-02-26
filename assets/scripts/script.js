@@ -157,7 +157,7 @@ const generateQuestions = () => {
         console.log(questionsArray.length);
       removedQuestions.push(questionsArray.splice(i, 1)); 
     } else {
-        const endGamePause = setTimeout(endGame, 5000);
+        const endGamePause = setTimeout(endGame, 10000);
         clearTimeout(endGamePause);
     //   endGame();
     }
@@ -187,7 +187,6 @@ buttonsArray.forEach((button) => {
 });
 
 //Endgame
-
 const endGame = () => {
     choiceButtons.style.display = 'none';
     answer.style.display = 'none';
