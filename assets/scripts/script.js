@@ -84,7 +84,6 @@ const questionsArray = [question1, question2, question3, question4, question5, q
 mainHead.innerHTML = 'Coding Quiz Challenge';
 explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
 startGameButton.innerHTML = 'Start Game';
-// startGameButton.style.fontSize = '1rem';
 
 //Start the Game
 const startGame = () => {
@@ -144,7 +143,7 @@ const generateQuestions = () => {
     }
 };  
   
-//Creates an array from the buttons nodelist and creates eventlistener for each button
+//Creates an array from the buttons nodelist and creates eventlistener for each choice button
 //David Metcalfe, bootcamp tutor, helped me understand and create this functionality
 const allChoices = document.getElementsByClassName('choice-button');
 const buttonsArray = Array.from(allChoices);
@@ -168,7 +167,6 @@ buttonsArray.forEach((button) => {
 });
 
 //Endgame
-
 const endGame = () => {
     choiceButtons.style.display = 'none';
     answer.style.display = 'none';
@@ -178,6 +176,7 @@ const endGame = () => {
     score.innerHTML = timeLeft;
 };
 
+//Save button for initials. Sets up local storage for intials and score
 saveButton.addEventListener('click', function(event) {
     event.preventDefault();
     
@@ -195,12 +194,7 @@ const renderScores = () => {
     let lastScore = JSON.parse(localStorage.getItem("storeScores"));
 
     if (lastScore !== null) {
-        document.getElementById("highScores").textContent = lastScore.initials + ' scored ' +
+        document.getElementById("userScores").textContent = lastScore.initials + ' scored ' +
         lastScore.timeLeft;
       }
 };
-
-
-
-
-

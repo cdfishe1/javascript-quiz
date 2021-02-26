@@ -8,26 +8,31 @@
     <title>Javascript Quiz</title>
 </head>
 <body>
+    <!-- Player score and time -->
     <header>
-        <p>Player Score<span id='highScores' class='high-scores'></span></p>
+        <p>Player Score<span id='userScores' class='user-scores'></span></p>
         <p>Time:<span id='countDown'></span></p>
         
     </header>
+    <!-- Contains intro, quiz, and endGame content -->
     <main>
+        <!-- Populates the main heading, quiz question, and results heading -->
         <h1></h1>
         <p id='gameExplanation' class='game-explain'></p>
         <button id='startGame' class='start-gamebutton'></button>
+        <!-- List of choices for question -->
         <ul>
             <li><button  id='choice1' class='choice-button'></button></li>
             <li><button  id='choice2' class='choice-button'></button></li>
             <li><button  id='choice3' class='choice-button'></button></li>
             <li><button  id='choice4' class='choice-button'></button></li>
         </ul>
-
+        <!-- Quiz answer -->
         <p id='answer' class = 'answer-response'></p>
-
+        <!-- Score -->
         <p id='gameScore' class='game-score'>Your score <span id='score'></span></p>
         <br>
+        <!-- Form to submit initials -->
         <form id='playerInitials' class='initials-form'>
             <label for="initials">Enter initials:</label>
             <input type="text" id='initials' name='intials'>
