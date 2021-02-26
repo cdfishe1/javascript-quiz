@@ -157,8 +157,8 @@ const generateQuestions = () => {
         endGame();
     }
 };
-let clicks = 0;  
-answerClicks = clicks;
+
+let answerClicks = 0;
 console.log(answerClicks);
 
 //Creates an array from the buttons nodelist and creates eventlistener for each choice button
@@ -167,8 +167,8 @@ const allChoices = document.getElementsByClassName('choice-button');
 const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
-    clicks++;
-    console.log(clicks);
+    answerClicks++;
+    console.log(answerClicks);
 
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 10 seconds, re-executes generateQuestions
