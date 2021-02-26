@@ -84,6 +84,7 @@ const questionsArray = [question1, question2, question3, question4, question5, q
 mainHead.innerHTML = 'Coding Quiz Challenge';
 explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
 startGameButton.innerHTML = 'Start Game';
+// startGameButton.style.fontSize = '1rem';
 
 //Start the Game
 const startGame = () => {
@@ -91,23 +92,23 @@ const startGame = () => {
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
     generateQuestions();
-    timer();
+    // timer();
 };
 
-//Timer
-const timer = () => {
-    let timerInterval = setInterval(function() {
-        timeLeft--;
-        time.innerHTML = timeLeft;
-        //Executes endGame if timer reaches 0 or all questions have passed.
-        console.log(questionsArray);
-        if((timeLeft <= 0) || questionsArray.length === 0) {
-          clearInterval(timerInterval);
-          endGame();
-        }
+// //Timer
+// const timer = () => {
+//     let timerInterval = setInterval(function() {
+//         timeLeft--;
+//         time.innerHTML = timeLeft;
+//         //Executes endGame if timer reaches 0 or all questions have passed.
+//         console.log(questionsArray);
+//         if((timeLeft <= 0) || questionsArray.length === 0) {
+//           clearInterval(timerInterval);
+//           endGame();
+//         }
     
-      }, 1000);
-};
+//       }, 1000);
+// };
 
 //Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);
@@ -147,12 +148,16 @@ const generateQuestions = () => {
 quizChoice1.addEventListener('click', function() {
     if (quizChoice1.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
-        answer.innerHTML = 'Incorrect';
+        answer.innerHTML = 'That is incorrect.';
+        answer.style.backgroundColor = '#9B223B';
+        answer.style.color = '#fff';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
+        answer.style.backgroundColor = '#132A13';
+        answer.style.color = '#fff';
         generateQuestions();
     }
 });
@@ -161,12 +166,16 @@ quizChoice1.addEventListener('click', function() {
 quizChoice2.addEventListener('click', function() {
     if (quizChoice2.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
-        answer.innerHTML = 'Incorrect';
+        answer.innerHTML = 'That is incorrect.';
+        answer.style.backgroundColor = '#9B223B';
+        answer.style.color = '#fff';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
+        answer.style.backgroundColor = '#132A13';
+        answer.style.color = '#fff';
     }   generateQuestions();
 });
 
@@ -174,12 +183,16 @@ quizChoice2.addEventListener('click', function() {
 quizChoice3.addEventListener('click', function() {
     if (quizChoice3.dataset.response === 'false') {
         //Prints response, deducts 10 seconds, re-executes generateQuestions
-        answer.innerHTML = 'Incorrect';
+        answer.innerHTML = 'That is incorrect.';
+        answer.style.backgroundColor = '#9B223B';
+        answer.style.color = '#fff';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
+        answer.style.backgroundColor = '#132A13';
+        answer.style.color = '#fff';
         generateQuestions();
     }
 });
@@ -189,11 +202,15 @@ quizChoice4.addEventListener('click', function() {
     //Prints response, deducts 10 seconds, re-executes generateQuestions
     if (quizChoice4.dataset.response === 'false') {
         answer.innerHTML = 'That is incorrect.';
+        answer.style.backgroundColor = '#9B223B';
+        answer.style.color = '#fff';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response, re-executes generateQuestions
         answer.innerHTML = 'That is correct!';
+        answer.style.backgroundColor = '#132A13';
+        answer.style.color = '#fff';
         generateQuestions();
     }
 });

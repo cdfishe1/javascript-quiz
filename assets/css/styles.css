@@ -1,21 +1,73 @@
+/* Remove browser defaults */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --basic-dark: #240046;
+    --basic-light: #E0AAFF;
+}
+
+h1, p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
 /* Question and choices list */
 header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    margin: 2vh 2vw;
 }
 
 h1 {
+    align-self: center;
     text-align: center;
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    padding: 1vh 1vw;
+    margin: 1vh 1vw;
+}
+
+main p {
+    align-self: center;
+    text-align: center;
+    padding: 1vh 1vw;
+    
+}
+
+header p {
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    padding: 1vh 0.5vw;
 }
 
 .game-explain {
+    align-self: center;
     text-align: center;
+    margin-bottom: 2vh;
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    padding: 0.5vh 0.5vw;
+    
 }
 
 .start-gamebutton {
     align-self: center;
+    border-radius: 8px;
+    background-color: var(--basic-dark);
+    color: var(--basic-light);
+    border-color: var(--basic-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1vh 1vw;
+    cursor: pointer;
 }
 
 main {
@@ -28,10 +80,21 @@ main {
 
 main ul {
     display: none;
+    text-align: center;
 }
 
 main ul li {
     margin: 2vh 2vw;
+    list-style: none;
+}
+
+.choice-button {
+    border-radius: 8px;
+    background-color: var(--basic-dark);
+    font-size: 1.5rem;
+    color: var(--basic-light);
+    padding: 0.5vh 1vw;
+    cursor: pointer;
 }
 
 .game-score {
