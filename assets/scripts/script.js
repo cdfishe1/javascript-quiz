@@ -92,26 +92,9 @@ const startGame = () => {
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
     generateQuestions();
-    // timer();
-};
-
-
-
-// //Timer
-// const timer = () => {
-//     let timerInterval = setInterval(function() {
-//         timeLeft--;
-//         time.innerHTML = timeLeft;
-//         //Executes endGame if timer reaches 0 or all questions have passed.
-//         console.log(questionsArray);
-//         console.log(removedQuestions);
-//         if((timeLeft <= 0) || questionsArray.length === 0) {
-//           clearInterval(timerInterval);
-//           endGame();
-//         }
     
-//       }, 1000);
-// };
+};   
+
 
 //Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);
@@ -129,9 +112,14 @@ const generateQuestions = () => {
             timeLeft--;
             time.innerHTML = timeLeft;
             //Executes endGame if timer reaches 0 or all questions have passed.
-            if((timeLeft <= 0) || (removedQuestions.length === 6)) {
+            if((timeLeft <= 0) || (answerClicks === 6)) {
               clearInterval(timerInterval);
-              endGame();
+
+              let endGameTimeout = setTimeout(() => {
+                endGame();
+                clearTimeout(endGameTimeout);
+            }, 3000);
+            
             }
           }, 1000);
 
@@ -154,12 +142,15 @@ const generateQuestions = () => {
       //Removes the current question from the questionsArray and pushes it to removedQuestions
       removedQuestions.push(questionsArray.splice(i, 1)); 
     } else {
+        let endGameTimeout = setTimeout(() => {
         endGame();
+        clearTimeout(endGameTimeout);
+    }, 3000);
     }
 };
 
 let answerClicks = 0;
-console.log(answerClicks);
+
 
 //Creates an array from the buttons nodelist and creates eventlistener for each choice button
 //David Metcalfe, bootcamp tutor, helped me understand and create this functionality
@@ -168,7 +159,7 @@ const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
     answerClicks++;
-    console.log(answerClicks);
+    
 
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 10 seconds, re-executes generateQuestions
