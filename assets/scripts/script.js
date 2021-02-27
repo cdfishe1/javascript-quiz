@@ -29,7 +29,7 @@ const question1 = {
     choice2: {answer2: '[1,2,3]', response: 'true',},
     choice3: {answer3: '(1,2,3)', response: 'false',},
     choice4: {answer4: '<1,2,3>', response: 'false',},
-    
+
     
 };
 
@@ -118,7 +118,7 @@ const generateQuestions = () => {
               let endGameTimeout = setTimeout(() => {
                 endGame();
                 clearTimeout(endGameTimeout);
-            }, 3000);
+            }, 2000);
             
             }
           }, 1000);
@@ -145,7 +145,7 @@ const generateQuestions = () => {
         let endGameTimeout = setTimeout(() => {
         endGame();
         clearTimeout(endGameTimeout);
-    }, 3000);
+    }, 2000);
     }
 };
 
@@ -159,8 +159,6 @@ const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
     answerClicks++;
-    
-
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 10 seconds, re-executes generateQuestions
 
@@ -195,7 +193,6 @@ const endGame = () => {
 saveButton.addEventListener('click', function(event) {
     event.preventDefault();
     
-
     const storeScores = {
         initials: initials.value,
         timeLeft: timeLeft,

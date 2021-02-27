@@ -10,10 +10,16 @@
 :root {
     --basic-dark: #240046;
     --basic-light: #E0AAFF;
+    --really-light: #DEC9E9;
 }
 
 /* Sets font */
 body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--really-light);
     font-family: Arial, Helvetica, sans-serif;
 }
 
