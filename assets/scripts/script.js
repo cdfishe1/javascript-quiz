@@ -16,6 +16,7 @@ const gameScore = document.getElementById('gameScore');
 const playerInitials = document.getElementById('playerInitials');
 const saveButton = document.getElementById('save');
 const playAgaiin = document.getElementById('playAgain');
+let currentQuestion;
 
 let timeLeft = 60;
 
@@ -25,7 +26,8 @@ let removedQuestions = [];
 //The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
-    choice1: {answer1: '{1,2,3}', response: 'false',},
+    choice1: {answer1: '{1,2,3}', response: 'false', 
+},
     choice2: {answer2: '[1,2,3]', response: 'true',},
     choice3: {answer3: '(1,2,3)', response: 'false',},
     choice4: {answer4: '<1,2,3>', response: 'false',},
@@ -44,7 +46,7 @@ const question2 = {
 
 const question3 = {
     question: 'Which array method adds an element to the end of an array?',
-    choice1: {answer1: 'pull', response: 'false',},
+    choice1: {answer1: 'join', response: 'false',},
     choice2: {answer2: 'push', response: 'true',},
     choice3: {answer3: 'pop', response: 'false',},
     choice4: {answer4: 'shift', response: 'false',},
@@ -61,7 +63,7 @@ const question4 = {
 };
 
 const question5 = {
-    question: 'Which display property removes an element out of the normal flow of the document?',
+    question: 'Which position property removes an element out of the normal flow of the document?',
     choice1: {answer1: 'relative', response: 'false',},
     choice2: {answer2: 'sticky', response: 'false',},
     choice3: {answer3: 'absolute', response: 'true',},
@@ -130,6 +132,8 @@ const generateQuestions = () => {
       //Prints the first choice of the current question and sets response attribute
       quizChoice1.innerHTML = currentQuestion.choice1.answer1;
       quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
+      quizChoice1.setAttribute('data-explain', currentQuestion.choice1.explain);
+
       //Prints the second choice of the current question and sets response attribute
       quizChoice2.innerHTML = currentQuestion.choice2.answer2;
       quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
@@ -165,6 +169,7 @@ buttonsArray.forEach((button) => {
         answer.innerHTML = 'That is incorrect.';
         answer.style.backgroundColor = '#9B223B';
         answer.style.color = '#fff';
+        answer.style.fontSize = '1.25rem';
         timeLeft = timeLeft - 5;
         generateQuestions();
     } else {

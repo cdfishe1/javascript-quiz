@@ -136,6 +136,7 @@ main p {
 /* Controls display of answer responses */
 .answer-response {
     display: none;
+    
 }
 
 /* Form for entering initials */
@@ -164,6 +165,10 @@ main p {
             'header'
             'main'
         ;
+    }
+
+    main h1 {
+        font-size: 1.25rem;
     }
     
 
