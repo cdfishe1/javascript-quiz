@@ -108,20 +108,20 @@ const generateQuestions = () => {
 
     if (questionsArray.length > 0) {
         //Sets game timer
-        let timerInterval = setInterval(function() {
-            timeLeft--;
-            time.innerHTML = timeLeft;
-            //Executes endGame if timer reaches 0 or all questions have passed.
-            if((timeLeft <= 0) || (answerClicks === 6)) {
-              clearInterval(timerInterval);
+        // let timerInterval = setInterval(function() {
+        //     timeLeft--;
+        //     time.innerHTML = timeLeft;
+        //     //Executes endGame if timer reaches 0 or all questions have passed.
+        //     if((timeLeft <= 0) || (answerClicks === 6)) {
+        //       clearInterval(timerInterval);
 
-              let endGameTimeout = setTimeout(() => {
-                endGame();
-                clearTimeout(endGameTimeout);
-            }, 2000);
+        //       let endGameTimeout = setTimeout(() => {
+        //         endGame();
+        //         clearTimeout(endGameTimeout);
+        //     }, 2000);
             
-            }
-          }, 1000);
+        //     }
+        //   }, 1000);
 
       //The question currently on the screen
       currentQuestion = questionsArray[i];
@@ -205,6 +205,7 @@ saveButton.addEventListener('click', function(event) {
 const renderScores = () => {
     let lastScore = JSON.parse(localStorage.getItem("storeScores"));
 
+    
     if (lastScore !== null) {
         document.getElementById("userScores").textContent = lastScore.initials + ' scored ' +
         lastScore.timeLeft;
