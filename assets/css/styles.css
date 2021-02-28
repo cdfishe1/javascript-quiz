@@ -154,3 +154,18 @@ main p {
 .user-scores {
     margin-left: 1vw;
 }
+
+@media only screen and (max-width: 500px) {
+    body {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto 5vh 2fr;
+        grid-template-areas: 
+            'header'
+            '.'
+            'main'
+        ;
+    }
+    
+
+}
