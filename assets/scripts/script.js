@@ -16,18 +16,16 @@ const gameScore = document.getElementById('gameScore');
 const playerInitials = document.getElementById('playerInitials');
 const saveButton = document.getElementById('save');
 const playAgaiin = document.getElementById('playAgain');
-let currentQuestion;
 
 let timeLeft = 60;
 
-let removedQuestions = [];
+let answerClicks = 0;
 
 
 //The set of questions
 const question1 = {
     question: 'How do you construct an array in Javascript?',
-    choice1: {answer1: '{1,2,3}', response: 'false', 
-},
+    choice1: {answer1: '{1,2,3}', response: 'false',},
     choice2: {answer2: '[1,2,3]', response: 'true',},
     choice3: {answer3: '(1,2,3)', response: 'false',},
     choice4: {answer4: '<1,2,3>', response: 'false',},
@@ -88,19 +86,37 @@ mainHead.innerHTML = 'Coding Quiz Challenge';
 explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
 startGameButton.innerHTML = 'Start Game';
 
+
 //Start the Game
 const startGame = () => {
     startGameButton.style.display = 'none';
     explain.style.display = 'none';
     choiceButtons.style.display = 'initial';
     generateQuestions();
+    timer();
+};
+
+//Sets game timer
+ const timer = () => {
+    let timerInterval = setInterval(function() {
+        timeLeft--;
+        time.innerHTML = timeLeft;
+        //Executes endGame if timer reaches 0 or all questions have passed.
+        if((timeLeft <= 0) || (answerClicks === 6)) {
+          clearInterval(timerInterval);
     
-};   
+          let endGameTimeout = setTimeout(() => {
+            endGame();
+            clearTimeout(endGameTimeout);
+        }, 2000);
+        
+        }
+      }, 1000);
+ };
 
 
 //Executes the startGame function when Start Game button is clicked.
 startGameButton.addEventListener('click', startGame);
-
 
 //Generates the quiz questions
 const generateQuestions = () => { 
@@ -109,21 +125,6 @@ const generateQuestions = () => {
     let i = Math.floor(Math.random() * questionsArray.length);
 
     if (questionsArray.length > 0) {
-        //Sets game timer
-        // let timerInterval = setInterval(function() {
-        //     timeLeft--;
-        //     time.innerHTML = timeLeft;
-        //     //Executes endGame if timer reaches 0 or all questions have passed.
-        //     if((timeLeft <= 0) || (answerClicks === 6)) {
-        //       clearInterval(timerInterval);
-
-        //       let endGameTimeout = setTimeout(() => {
-        //         endGame();
-        //         clearTimeout(endGameTimeout);
-        //     }, 2000);
-            
-        //     }
-        //   }, 1000);
 
       //The question currently on the screen
       currentQuestion = questionsArray[i];
@@ -144,7 +145,7 @@ const generateQuestions = () => {
       quizChoice4.innerHTML = currentQuestion.choice4.answer4;
       quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
       //Removes the current question from the questionsArray and pushes it to removedQuestions
-      removedQuestions.push(questionsArray.splice(i, 1)); 
+      questionsArray.splice(i, 1); 
     } else {
         let endGameTimeout = setTimeout(() => {
         endGame();
@@ -152,9 +153,6 @@ const generateQuestions = () => {
     }, 2000);
     }
 };
-
-let answerClicks = 0;
-
 
 //Creates an array from the buttons nodelist and creates eventlistener for each choice button
 //David Metcalfe, bootcamp tutor, helped me understand and create this functionality
