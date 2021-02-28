@@ -159,10 +159,9 @@ main p {
     body {
         display: grid;
         grid-template-columns: auto;
-        grid-template-rows: auto 5vh 2fr;
+        grid-template-rows: auto auto;
         grid-template-areas: 
             'header'
-            '.'
             'main'
         ;
     }
