@@ -1,26 +1,25 @@
 //Variables
 
-const mainHead = document.querySelector('h1');
-const quizChoice1 = document.getElementById('choice1');
-const quizChoice2 = document.getElementById('choice2');
-const quizChoice3 = document.getElementById('choice3');
-const quizChoice4 = document.getElementById('choice4');
-const quizAnswer = document.getElementById('answer');
-const choiceButtons = document.querySelector('ul');
-const explain = document.getElementById('gameExplanation');
-const startGameButton = document.getElementById('startGame');
-const answer = document.getElementById('answer');
-const time = document.getElementById('countDown');
-const score = document.getElementById('score');
-const gameScore = document.getElementById('gameScore');
-const playerInitials = document.getElementById('playerInitials');
-const saveButton = document.getElementById('save');
-const playAgaiin = document.getElementById('playAgain');
-
-let timeLeft = 60;
-
-let answerClicks = 0;
-
+const variables = {
+    mainHead: document.querySelector('h1'),
+    quizChoice1: document.getElementById('choice1'),
+    quizChoice2: document.getElementById('choice2'),
+    quizChoice3: document.getElementById('choice3'),
+    quizChoice4: document.getElementById('choice4'),
+    choiceButtons: document.querySelector('ul'),
+    explain: document.getElementById('gameExplanation'),
+    startGameButton: document.getElementById('startGame'),
+    answer: document.getElementById('answer'),
+    time: document.getElementById('countDown'),
+    score: document.getElementById('score'),
+    gameScore: document.getElementById('gameScore'),
+    playerInitials: document.getElementById('playerInitials'),
+    saveButton: document.getElementById('save'),
+    playAgain: document.getElementById('playAgain'),
+    timeLeft: 60,
+    answerClicks: 0,
+    
+};
 
 //The set of questions
 const question1 = {
@@ -82,16 +81,16 @@ const question6 = {
 const questionsArray = [question1, question2, question3, question4, question5, question6];
 
 //Introduction to the game with Start Game button
-mainHead.innerHTML = 'Coding Quiz Challenge';
-explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
-startGameButton.innerHTML = 'Start Game';
+variables.mainHead.innerHTML = 'Coding Quiz Challenge';
+variables.explain.innerHTML = 'Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds.';
+variables.startGameButton.innerHTML = 'Start Game';
 
 
 //Start the Game
 const startGame = () => {
-    startGameButton.style.display = 'none';
-    explain.style.display = 'none';
-    choiceButtons.style.display = 'initial';
+    variables.startGameButton.style.display = 'none';
+    variables.explain.style.display = 'none';
+    variables.choiceButtons.style.display = 'initial';
     generateQuestions();
     timer();
 };
@@ -99,10 +98,10 @@ const startGame = () => {
 //Sets game timer
  const timer = () => {
     let timerInterval = setInterval(function() {
-        timeLeft--;
-        time.innerHTML = timeLeft;
+        variables.timeLeft--;
+        variables.time.innerHTML = variables.timeLeft;
         //Executes endGame if timer reaches 0 or all questions have passed.
-        if((timeLeft <= 0) || (answerClicks === 6)) {
+        if((variables.timeLeft <= 0) || (variables.answerClicks === 6)) {
           clearInterval(timerInterval);
     
           let endGameTimeout = setTimeout(() => {
@@ -116,7 +115,7 @@ const startGame = () => {
 
 
 //Executes the startGame function when Start Game button is clicked.
-startGameButton.addEventListener('click', startGame);
+variables.startGameButton.addEventListener('click', startGame);
 
 //Generates the quiz questions
 const generateQuestions = () => { 
@@ -129,21 +128,19 @@ const generateQuestions = () => {
       //The question currently on the screen
       currentQuestion = questionsArray[i];
       //Prints the current question
-      mainHead.innerHTML = currentQuestion.question;
+      variables.mainHead.innerHTML = currentQuestion.question;
       //Prints the first choice of the current question and sets response attribute
-      quizChoice1.innerHTML = currentQuestion.choice1.answer1;
-      quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
-      quizChoice1.setAttribute('data-explain', currentQuestion.choice1.explain);
-
+      variables.quizChoice1.innerHTML = currentQuestion.choice1.answer1;
+      variables.quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
       //Prints the second choice of the current question and sets response attribute
-      quizChoice2.innerHTML = currentQuestion.choice2.answer2;
-      quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
+      variables.quizChoice2.innerHTML = currentQuestion.choice2.answer2;
+      variables.quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
       //Prints the third choice of the current question and sets response attribute
-      quizChoice3.innerHTML = currentQuestion.choice3.answer3;
-      quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
+      variables.quizChoice3.innerHTML = currentQuestion.choice3.answer3;
+      variables.quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
       //Prints the fourth choice of the current question and sets response attribute
-      quizChoice4.innerHTML = currentQuestion.choice4.answer4;
-      quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
+      variables.quizChoice4.innerHTML = currentQuestion.choice4.answer4;
+      variables.quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
       //Removes the current question from the questionsArray and pushes it to removedQuestions
       questionsArray.splice(i, 1); 
     } else {
@@ -160,21 +157,21 @@ const allChoices = document.getElementsByClassName('choice-button');
 const buttonsArray = Array.from(allChoices);
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
-    answerClicks++;
+    variables.answerClicks++;
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 10 seconds, re-executes generateQuestions
 
-        answer.innerHTML = 'That is incorrect.';
-        answer.style.backgroundColor = '#9B223B';
-        answer.style.color = '#fff';
-        answer.style.fontSize = '1.25rem';
-        timeLeft = timeLeft - 5;
+        variables.answer.innerHTML = 'That is incorrect.';
+        variables.answer.style.backgroundColor = '#9B223B';
+        variables.answer.style.color = '#fff';
+        variables.answer.style.fontSize = '1.25rem';
+        variables.timeLeft = variables.timeLeft - 5;
         generateQuestions();
     } else {
         //Prints response on true, re-executes generateQuestions
-        answer.innerHTML = 'That is correct!';
-        answer.style.backgroundColor = '#132A13';
-        answer.style.color = '#fff';
+        variables.answer.innerHTML = 'That is correct!';
+        variables.answer.style.backgroundColor = '#132A13';
+        variables.answer.style.color = '#fff';
         generateQuestions();
     }
     
@@ -183,22 +180,22 @@ buttonsArray.forEach((button) => {
 
 //Endgame
 const endGame = () => {
-    choiceButtons.style.display = 'none';
-    answer.style.display = 'none';
-    gameScore.style.display = 'initial';
-    playerInitials.style.display = 'initial';
-    mainHead.innerHTML = 'All Done!';
-    score.innerHTML = timeLeft;
+    variables.choiceButtons.style.display = 'none';
+    variables.answer.style.display = 'none';
+    variables.gameScore.style.display = 'initial';
+    variables.playerInitials.style.display = 'initial';
+    variables.mainHead.innerHTML = 'All Done!';
+    variables.score.innerHTML = variables.timeLeft;
 };
 
 
 //Save button for initials. Sets up local storage for intials and score
-saveButton.addEventListener('click', function(event) {
+variables.saveButton.addEventListener('click', function(event) {
     event.preventDefault();
     
     const storeScores = {
         initials: initials.value,
-        timeLeft: timeLeft,
+        timeLeft: variables.timeLeft,
     }
 
     localStorage.setItem("storeScores", JSON.stringify(storeScores));
