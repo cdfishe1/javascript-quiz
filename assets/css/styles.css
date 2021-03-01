@@ -24,7 +24,7 @@ body {
         'main'
     ;
     height: 100vh;
-    background-color: var(--really-light);
+    background-image: radial-gradient(var(--really-light), var(--basic-light), var(--basic-dark));
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -32,6 +32,7 @@ body {
     background-color: var(--basic-light);
     color: var(--basic-dark);
     border: 0.5em solid var(--basic-dark);
+    border-image-slice: 1;
     border-radius: 8px;
 }
 
@@ -79,7 +80,7 @@ h1 {
     border-radius: 8px;
     background-color: var(--basic-light);
     color: var(--basic-dark);
-    border: 0.5em solid var(--basic-dark);
+    /* border: 0.5em solid var(--basic-dark); */
     font-size: 1.5rem;
     font-weight: bold;
     padding: 1vh 1vw;
