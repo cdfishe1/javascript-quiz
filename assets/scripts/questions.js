@@ -1,6 +1,4 @@
-module.exports = {
-    quizQuestions,
-};
+export { quizQuestions as default};
 
 const quizQuestions = {
     question1: {
@@ -45,3 +43,4 @@ const quizQuestions = {
         choice3: {answer3: '42', response: 'false',},
         choice4: {answer4: 'null', response: 'true',},},
     
+    };
