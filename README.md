@@ -31,6 +31,7 @@ Site deployed at [Charles Fisher](https://cdfishe1.github.io/javascript-quiz/)
 
 * Used ES6 features such as const and let for variable declaration and arrow functions to enhance readability of the script.
 * Used javascript to dynamically populate the contents of elements.
+* Used dataset attributes to retrieve and manipulate output.
 * Used setTimeout to create needed pauses to delay function executions.
 * Used title attribute in empty buttons to enhance accessibiility.
 
