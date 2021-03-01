@@ -24,44 +24,44 @@ const variables = {
 const quizQuestions = {
     question1: {
         question: 'How do you construct an array in Javascript?',
-        choice1: {answer1: '{1,2,3}', response: 'false',},
+        choice1: {answer1: '{1,2,3}', response: 'false', explain: '{Curly brackets} are used to construct objects.'},
         choice2: {answer2: '[1,2,3]', response: 'true',},
-        choice3: {answer3: '(1,2,3)', response: 'false',},
-        choice4: {answer4: '<1,2,3>', response: 'false',},},
+        choice3: {answer3: '(1,2,3)', response: 'false', explain: '(Parantheses) are used to construct functions.'},
+        choice4: {answer4: '<1,2,3>', response: 'false', explain: '<Angle brackets> are used to construct elements.'},},
     
     question2: {
         question: 'What is the value passed when clicking "cancel" in a Confirm Box?',
-        choice1: {answer1: 'true', response: 'false',},
-        choice2: {answer2: 'null', response: 'false',},
+        choice1: {answer1: 'true', response: 'false', explain: 'Although cancel passes a boolean, it does not pass true.'},
+        choice2: {answer2: 'null', response: 'false', explain: 'Cancel passes a boolean, not null.'},
         choice3: {answer3: 'false', response: 'true',},
-        choice4: {answer4: 'NaN', response: 'false',},},
+        choice4: {answer4: 'NaN', response: 'false', explain: 'Cancel passes a boolean, not Nan.'},},
     
     question3: {
         question: 'Which array method adds an element to the end of an array?',
-        choice1: {answer1: 'join', response: 'false',},
-        choice2: {answer2: 'push', response: 'true',},
-        choice3: {answer3: 'pop', response: 'false',},
-        choice4: {answer4: 'shift', response: 'false',},},
+        choice1: {answer1: 'join()', response: 'false', explain: 'Join creates a string concantenated by a specified separator string.'},
+        choice2: {answer2: 'push()', response: 'true',},
+        choice3: {answer3: 'pop()', response: 'false', explain: 'Pop removes the last element of an array.'},
+        choice4: {answer4: 'shift()', response: 'false', explain: 'Shift removes the first element of an array.'}},
     
     question4: {
         question: 'What unit measures font size relative to the root element?',
-        choice1: {answer1: 'px', response: 'false',},
-        choice2: {answer2: 'vh', response: 'false',},
-        choice3: {answer3: 'em', response: 'false',},
+        choice1: {answer1: 'px', response: 'false', explain: 'px measures size based on pixels.'},
+        choice2: {answer2: 'vh', response: 'false', explain: 'vh measures size based on a percerntage of viewport height.'},
+        choice3: {answer3: 'em', response: 'false', explain: 'em measures size relative to the parent element.'},
         choice4: {answer4: 'rem', response: 'true',},},
     
     question5: {
         question: 'Which position property removes an element out of the normal flow of the document?',
-        choice1: {answer1: 'relative', response: 'false',},
-        choice2: {answer2: 'sticky', response: 'false',},
+        choice1: {answer1: 'relative', response: 'false', explain: 'Relative positions an element in the normal flow relative to itself.'},
+        choice2: {answer2: 'sticky', response: 'false', explain: 'Sticky positions an element in the normal flow relative to its nearest scrolling ancestor.'},
         choice3: {answer3: 'absolute', response: 'true',},
-        choice4: {answer4: 'static', response: 'false',},},
+        choice4: {answer4: 'static', response: 'false', explain: 'This is the default position of an element.'},},
 
     question6: {
         question: 'Which value is falsy in Javascript?',
-        choice1: {answer1: "'true'", response: 'false',},
-        choice2: {answer2: "'false'", response: 'false',},
-        choice3: {answer3: '42', response: 'false',},
+        choice1: {answer1: "'zero'", response: 'false', explain: 'Strings are passed as truthy.'},
+        choice2: {answer2: "'false'", response: 'false', explain: 'False is a boolean and passed as truthy.'},
+        choice3: {answer3: '42', response: 'false', explain: '42 is the answer to the question of the meaning of life.'},
         choice4: {answer4: 'null', response: 'true',},},
     
 };
@@ -117,20 +117,25 @@ const generateQuestions = () => {
 
       //The question currently on the screen
       currentQuestion = questionsArray[i];
+
       //Prints the current question
       variables.mainHead.innerHTML = currentQuestion.question;
       //Prints the first choice of the current question and sets response attribute
       variables.quizChoice1.innerHTML = currentQuestion.choice1.answer1;
       variables.quizChoice1.setAttribute('data-response', currentQuestion.choice1.response);
+      variables.quizChoice1.setAttribute('data-explain', currentQuestion.choice1.explain);
       //Prints the second choice of the current question and sets response attribute
       variables.quizChoice2.innerHTML = currentQuestion.choice2.answer2;
       variables.quizChoice2.setAttribute('data-response', currentQuestion.choice2.response);
+      variables.quizChoice2.setAttribute('data-explain', currentQuestion.choice2.explain);
       //Prints the third choice of the current question and sets response attribute
       variables.quizChoice3.innerHTML = currentQuestion.choice3.answer3;
       variables.quizChoice3.setAttribute('data-response', currentQuestion.choice3.response);
+      variables.quizChoice3.setAttribute('data-explain', currentQuestion.choice3.explain);
       //Prints the fourth choice of the current question and sets response attribute
       variables.quizChoice4.innerHTML = currentQuestion.choice4.answer4;
       variables.quizChoice4.setAttribute('data-response', currentQuestion.choice4.response);
+      variables.quizChoice4.setAttribute('data-explain', currentQuestion.choice4.explain);
       //Removes the current question from the questionsArray and pushes it to removedQuestions
       questionsArray.splice(i, 1); 
     } else {
@@ -143,15 +148,20 @@ const generateQuestions = () => {
 
 //Creates an array from the buttons nodelist and creates eventlistener for each choice button
 //David Metcalfe, bootcamp tutor, helped me understand and create this functionality
+
+//Gets all the buttons via the choice-button class
 const allChoices = document.getElementsByClassName('choice-button');
+//Creates an array for these buttons using the Array prototype constructor
 const buttonsArray = Array.from(allChoices);
+//Runs a forEach loop through each button passing the event listener to each one.
 buttonsArray.forEach((button) => {
   button.addEventListener('click', function () {
+      //Counts the clicks of the answer buttons
     variables.answerClicks++;
     if (button.dataset.response === 'false') {
-        //Prints response on false, deducts 10 seconds, re-executes generateQuestions
+        //Prints response on false, deducts 5 seconds, re-executes generateQuestions
 
-        variables.answer.innerHTML = 'That is incorrect.';
+        variables.answer.innerHTML = 'That is incorrect.' + '\n' + button.dataset.explain;
         variables.answer.style.backgroundColor = '#9B223B';
         variables.answer.style.color = '#fff';
         variables.answer.style.fontSize = '1.25rem';
