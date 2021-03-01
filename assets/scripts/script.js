@@ -46,7 +46,7 @@ const quizQuestions = {
     question4: {
         question: 'What unit measures font size relative to the root element?',
         choice1: {answer1: 'px', response: 'false', explain: 'px measures size based on pixels.'},
-        choice2: {answer2: 'vh', response: 'false', explain: 'vh measures size based on a percerntage of viewport height.'},
+        choice2: {answer2: 'vh', response: 'false', explain: 'vh measures size based on a percentage of viewport height.'},
         choice3: {answer3: 'em', response: 'false', explain: 'em measures size relative to the parent element.'},
         choice4: {answer4: 'rem', response: 'true',},},
     
