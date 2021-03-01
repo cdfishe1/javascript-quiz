@@ -161,7 +161,7 @@ buttonsArray.forEach((button) => {
     if (button.dataset.response === 'false') {
         //Prints response on false, deducts 5 seconds, re-executes generateQuestions
 
-        variables.answer.innerHTML = `That is incorrect. \n ${button.dataset.explain}`;
+        variables.answer.innerHTML = `That is incorrect. ${button.dataset.explain}`;
         variables.answer.style.backgroundColor = '#9B223B';
         variables.answer.style.color = '#fff';
         variables.answer.style.fontSize = '1.25rem';

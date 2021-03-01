@@ -20,7 +20,7 @@ Generates a quiz game of questions involving html, css, and javascript.
 ## Javascript Quiz Page
 
 ### Screencast on mobile
-![Screencast on mobile](assets/images/mobile.gif)
+![Screencast on mobile](assets/images/mobile-demo.gif)
 
 
 ## Deployment
@@ -30,8 +30,9 @@ Site deployed at [Charles Fisher](https://cdfishe1.github.io/javascript-quiz/)
 ## Scope of Project
 
 * Used ES6 features such as const and let for variable declaration and arrow functions to enhance readability of the script.
-* Uses javascript to dynamically populate the contents of elements.
-* Uses setTimeout to create needed pauses to delay function executions.
+* Used javascript to dynamically populate the contents of elements.
+* Used setTimeout to create needed pauses to delay function executions.
+* Used title attribute in empty buttons to enhance accessibiility.
 
 
 ## Installation
